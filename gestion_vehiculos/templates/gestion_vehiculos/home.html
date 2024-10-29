@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Página Principal - MotorMarket</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    {% load static %}
+    <link href="{% static 'gestion_vehiculos/css/style.css' %}" rel="stylesheet">
+
+</head>
+<body>
+
+<!-- Header (Navbar) -->
+<nav class="navbar navbar-expand-lg fixed-top" style="background-color: #003366;">
+  <div class="container-fluid">
+      <a class="navbar-brand fs-3" href="#" style="color: white;">
+          <img src="{% static 'gestion_vehiculos/images/logomm.jpg' %}" alt="Logo" width="30" height="30" class="d-inline-block align-text-top"> MOTOR MARKET
+      </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+            aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <ul class="navbar-nav mx-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+        <li class="nav-item">
+          <a class="nav-link link-light" aria-current="page" href="#"><i class="fas fa-home"></i> Inicio</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link link-light dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+             aria-expanded="false">
+            <i class="fas fa-users"></i> Gestión Usuarios
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#"><i class="fas fa-user"></i> Usuarios</a></li>
+            <li><a class="dropdown-item" href="#"><i class="fas fa-user-tag"></i> Roles</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle link-light" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fas fa-car"></i> Gestión Coches
+        </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'catalogo' %}"><i class="fas fa-car-side"></i> Coches Nuevos</a></li>
+            <li><a class="dropdown-item" href="{% url 'catalogo' %}"><i class="fas fa-car-crash"></i> Coches Semi Nuevos</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle link-light" href="#" role="button" data-bs-toggle="dropdown"
+             aria-expanded="false">
+            <i class="fas fa-file-alt"></i> Gestión Registro
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#"><i class="fas fa-book"></i> Registros</a></li>
+            <li><a class="dropdown-item" href="#"><i class="fas fa-history"></i> Historial</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <form class="d-flex" role="search">
+        <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+        <button class="btn btn-outline-light" type="submit">Búsqueda</button>
+      </form>
+
+      <!-- Cerrar Sesión Button -->
+      <form action="{% url 'register' %}" method="post" class="ms-3">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Cerrar Sesión</button>
+    </form>
+    </div>
+  </div>
+</nav>
+
+
+<!-- Contenido principal -->
+<div class="container" style="margin-top: 90px;">
+  <div class="text-center"> <!-- Añade esta clase para centrar el contenido -->
+      <h2>Bienvenido, {{ user.username }}!</h2>
+      
+      <p>Has iniciado sesión con éxito.</p>
+
+      
+  </div>
+</div>
+
+
+<!-- Contenedor para el video de YouTube -->
+<div id="player" class="video-background"></div>
+
+<!-- Contenido en la parte superior del video -->
+<div class="content">
+  <h1></h1>
+</div>
+
+<script>
+  // Cargar la API de YouTube
+  const tag = document.createElement('script');
+  tag.src = "https://www.youtube.com/iframe_api";
+  const firstScriptTag = document.getElementsByTagName('script')[0];
+  firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+  let player;
+  const videoId = 'Nlp-LF3U9AI'; // ID del video que deseas reproducir
+  const startTime = 1; // Tiempo en segundos desde donde quieres que comience el video
+
+  // Crear el reproductor de YouTube
+  function onYouTubeIframeAPIReady() {
+    player = new YT.Player('player', {
+      height: '100%',
+      width: '100%',
+      videoId: videoId,
+      playerVars: {
+        'autoplay': 1,
+        'controls': 0, // Ocultar controles
+        'start': startTime,
+        'loop': 1, // Habilitar bucle
+        'playlist': videoId, // Requerido para el bucle
+        'mute': 1, // Muteo para permitir autoplay
+        'showinfo': 0, // Ocultar información del video
+        'rel': 0 // Evitar mostrar videos relacionados al final
+      },
+      events: {
+        'onReady': onPlayerReady
+      }
+    });
+  }
+
+  // Función que se llama cuando el reproductor está listo
+  function onPlayerReady(event) {
+    event.target.playVideo(); // Iniciar reproducción automática
+  }
+</script>
+
+<!-- Hero Section -->
+<div class="hero">
+  <h1>Descubre Tu Próximo Auto</h1>
+  <p>Los mejores modelos de autos a tu disposición.</p>
+</div>
+
+
+<div class="spacer">
+  <div class="container mt-5">
+    <h2 class="text-center">Marcas de Autos que Trabajamos</h2>
+    <br>
+    <div class="row text-center">
+        <div class="col-md-3">
+          <img src="{% static 'gestion_vehiculos/images/subaru.png' %}" alt="Marca 1" class="img-fluid">
+        </div>
+        <div class="col-md-3">
+          <img src="{% static 'gestion_vehiculos/images/toyotaa.png' %}" alt="Marca 2" class="img-fluid">
+        </div>
+        <div class="col-md-3">
+          <img src="{% static 'gestion_vehiculos/images/mercedes.png' %}" alt="Marca 3" class="img-fluid">
+        </div>
+        <div class="col-md-3">
+          <img src="{% static 'gestion_vehiculos/images/Tesla.png' %}" alt="Marca 4" class="img-fluid" style="width: 175px; height: auto;">
+        </div>
+        <div class="col-md-3">
+          <img src="{% static 'gestion_vehiculos/images/bmwlogo.png' %}" alt="Marca 5" class="img-fluid">
+        </div>
+        <div class="col-md-3">
+          <img src="{% static 'gestion_vehiculos/images/Suzuki.png' %}" alt="Marca 6" class="img-fluid">
+        </div>
+        <div class="col-md-3">
+          <img src="{% static 'gestion_vehiculos/images/audi.png' %}" alt="Marca 7" class="img-fluid">
+        </div>
+        <div class="col-md-3">
+          <img src="{% static 'gestion_vehiculos/images/volvo1.png' %}" alt="Marca 8" class="img-fluid">
+        </div>
+        <div class="col-md-3">
+          <img src="{% static 'gestion_vehiculos/images/Hyundai.png' %}" alt="Marca 9" class="img-fluid">
+        </div>
+        <div class="col-md-3">
+          <img src="{% static 'gestion_vehiculos/images/ford1.png' %}" alt="Marca 10" class="img-fluid">
+        </div>
+        <div class="col-md-3">
+          <img src="{% static 'gestion_vehiculos/images/mazda1.png' %}" alt="Marca 11" class="img-fluid" style="width: 180px; height: auto;">
+        </div>
+        <div class="col-md-3">
+          <img src="{% static 'gestion_vehiculos/images/nissan.png' %}" alt="Marca 12" class="img-fluid">
+        </div>
+      </div>     
+  </div>
+</div> <!-- Espacio para desplazarse -->
+
+<br>
+
+<!-- Featured Cars Section -->
+<div class="container mt-5">
+  <center><h2>Autos Destacados</h2></center>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card d-flex flex-column" style="height: 100%;">
+        <img src="https://th.bing.com/th/id/R.4bc182a00d180c78dbddf5f22c496feb?rik=DJUoc%2bnTeJnYYQ&riu=http%3a%2f%2fcdn.bmwblog.com%2fwp-content%2fuploads%2f2016%2f02%2fBMW-M4-GTS-Chicago-Auto-Show-2.jpg&ehk=R2jkJ9PUhXV9AEZB3RU%2f6zOsBUDTOJZkMQzBjJd6sQ8%3d&risl=&pid=ImgRaw&r=0" class="card-img-top" alt="Auto 1" width="100%" height="225">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">BMW M4 GTS</h5>
+          <p class="card-text flex-grow-1">El BMW M4 GTS es un modelo especial del BMW M4, que destaca por su enfoque en la pista y su rendimiento extremo. Este vehículo de alto rendimiento combina la elegancia característica de BMW con una tecnología innovadora y un diseño audaz.</p>
+          <a href="listarCochesemi" class="btn btn-primary">Más Información</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card d-flex flex-column" style="height: 100%;">
+        <img src="https://sportauto.autojournal.fr/wp-content/uploads/sportauto/2022/11/ferrari_vision_gt_05-750x410.jpg" class="card-img-top" alt="Auto 2" width="100%" height="225">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Ferrari VGT</h5>
+          <p class="card-text flex-grow-1">El Ferrari Vision Gran Turismo es un impresionante y potente superdeportivo diseñado específicamente para el videojuego Gran Turismo 7 (GT7). Este automóvil, que forma parte de la colección Vision Gran Turismo, destaca por su diseño futurista y su enfoque en la velocidad y el rendimiento.</p>
+          <a href="listarCochesemi" class="btn btn-primary">Más Información</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card d-flex flex-column" style="height: 100%;">
+        <img src="https://images8.alphacoders.com/487/487147.jpg" class="card-img-top" alt="Auto 3" width="100%" height="225">
+        <div class="card-body d-flex flex-column">
+          <h5 class="card-title">Mercedes-Benz AMG</h5>
+          <p class="card-text flex-grow-1">El Mercedes-Benz AMG Vision Gran Turismo es un concepto de superdeportivo creado para el videojuego Gran Turismo 6, que ha cautivado a los entusiastas de los automóviles y los videojuegos. Este vehículo, diseñado para representar el futuro de la marca Mercedes-AMG, combina un diseño audaz con un rendimiento impresionante.</p>
+          <a href="listarCochesemi" class="btn btn-primary">Más Información</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Contact Form Section -->
+<div class="container mt-5">
+  <h2 class="text-center mb-4">Contáctanos</h2>
+  <div class="card shadow custom-card">
+    <div class="card-body">
+      <form>
+        <div class="mb-3">
+          <label for="name" class="form-label">Nombre</label>
+          <input type="text" class="form-control custom-input" id="name" placeholder="Tu nombre" required>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Correo Electrónico</label>
+          <input type="email" class="form-control custom-input" id="email" placeholder="tu.email@ejemplo.com" required>
+        </div>
+        <div class="mb-3">
+          <label for="message" class="form-label">Mensaje</label>
+          <textarea class="form-control custom-textarea" id="message" rows="4" placeholder="Escribe tu mensaje aquí..." required></textarea>
+        </div>
+        <center><a href="formCliente" class="btn btn-primary custom-button">Enviar</a></center>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Testimonials Section -->
+<div class="container mt-5">
+  <center><h2>Testimonios</h2></center>
+  <div class="row">
+    <div class="col-md-4">
+      <blockquote class="blockquote text-center">
+        <img src="https://th.bing.com/th/id/OIP.aKiay--qs4cPSgLUgFyPbwHaJQ?rs=1&pid=ImgDetMain" alt="Cliente 1" class="rounded-circle" width="100" height="100">
+        <p class="mb-0">"La mejor experiencia de compra de un auto que he tenido!"</p>
+        <br>
+        <br>
+        <footer class="blockquote-footer">Cliente 1</footer>
+      </blockquote>
+    </div>
+    <div class="col-md-4">
+      <blockquote class="blockquote text-center">
+        <img src="https://i.pinimg.com/originals/50/8a/59/508a59707e76feb398bb22b2b62d288a.jpg" alt="Cliente 2" class="rounded-circle" width="100" height="100">
+        <p class="mb-0">"Servicio al cliente excepcional y excelentes modelos."</p>
+        <br>
+        <br>
+        <footer class="blockquote-footer">Cliente 2</footer>
+      </blockquote>
+    </div>
+    <div class="col-md-4">
+      <blockquote class="blockquote text-center">
+        <img src="https://profile-images.xing.com/images/3bceb998f052a583d4ad56a8be929e9b-4/timo-raub.1024x1024.jpg" alt="Cliente 3" class="rounded-circle" width="100" height="100">
+        <p class="mb-0">"Recomiendo MotorMarket a todos mis amigos."</p>
+        <br>
+        <br>
+        <footer class="blockquote-footer">Cliente 3</footer>
+      </blockquote>
+    </div>
+  </div>
+</div>
+
+<div class="container text-center mt-5">
+  <h2>¡Explora más autos increíbles!</h2>
+  <p>Descubre nuestra amplia gama de vehículos y encuentra el auto de tus sueños.</p>
+
+</div>
+
+<!-- Footer -->
+<footer class="custom-footer">
+  <div class="footer-content">
+    <p>© 2024 MotorMarket. Todos los derechos reservados.</p>
+    <form action="{% url 'register' %}" method="post">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+    </form>
+
+    <a href="mailto:info@motormarket.com" class="footer-link">info@motormarket.com</a>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

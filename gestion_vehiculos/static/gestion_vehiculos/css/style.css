@@ -1,0 +1,161 @@
+body {
+    margin: 0;
+    overflow-x: hidden; /* Evita el scroll horizontal */
+    color: navy;
+    padding: 0px;
+    line-height: 1.6;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+  }
+
+  /* Contenedor para el video de fondo */
+  .video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Envía el video al fondo */
+    pointer-events: none; /* Evita la interacción con el video */
+  }
+
+  /* Contenido en la parte superior del video */
+  .content {
+    position: relative;
+    z-index: 1; /* Asegura que el contenido esté por encima del video */
+    color: white; /* Cambia el color del texto */
+    text-align: center;
+    padding-top: 20px; /* Espaciado desde la parte superior */
+  }
+
+  /* Hero Section */
+  .hero {
+    height: 100vh; /* Hace que la sección hero ocupe toda la altura de la ventana */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  /* Espacio para el contenido debajo de la hero section */
+  .spacer {
+    height: 60vh; /* Espacio para que puedas desplazarte hacia abajo */
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo semitransparente para mejorar la legibilidad del texto */
+  }
+  .img-fluid{
+    width: 250px; /* Ajusta el ancho deseado */
+    height: 150px; /* Ajusta la altura deseada */
+    object-fit: cover; /* Mantiene la relación de aspecto, recortando si es necesario */
+  }
+  
+
+  h1, h2, h3, h4, h6 {
+    color: white; /* Letra blanca */
+    text-shadow: -2px -2px 0 #0000FF, 2px -2px 0 #0000FF, -2px 2px 0 #0000FF, 2px 2px 0 #0000FF; /* Contorno azul */
+  }
+  h5, p{
+    color: white; /* Letra blanca */
+    text-shadow: -1px -1px 0 rgba(0, 0, 255, 0.5), 1px -1px 0 rgba(0, 0, 255, 0.5),
+    -1px 1px 0 rgba(0, 0, 255, 0.5), 1px 1px 0 rgba(0, 0, 255, 0.5);
+  }
+  /* Estilo para la tarjeta del formulario */
+  .custom-card {
+    background-color: #f8f9fa; /* Fondo claro para la tarjeta */
+    border: 1px solid #e0e0e0; /* Borde ligero */
+    border-radius: 10px; /* Borde redondeado */
+  }
+
+  /* Estilo para las entradas del formulario */
+  .custom-input, .custom-textarea {
+    border: 1px solid #007bff; /* Borde azul */
+    background-color: #ffffff; /* Fondo blanco */
+    color: #333; /* Texto oscuro */
+    border-radius: 5px; /* Bordes ligeramente redondeados */
+    transition: border-color 0.3s;
+  }
+
+  /* Cambios al hacer foco en los campos de entrada */
+  .custom-input:focus, .custom-textarea:focus {
+    border-color: #0056b3; /* Borde azul más oscuro al hacer foco */
+    box-shadow: 0 0 5px rgba(0, 91, 187, 0.5); /* Sombra azul suave */
+  }
+
+  /* Estilo personalizado para el botón */
+  .custom-button {
+    width: 150px; /* Ajusta el ancho del botón */
+    background: linear-gradient(90deg, #007bff, #0056b3); /* Gradiente azul */
+    border: none; /* Sin borde */
+    color: white; /* Texto blanco */
+    font-weight: bold; /* Texto en negrita */
+    padding: 10px; /* Espaciado interno */
+    border-radius: 10px; /* Bordes redondeados */
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+  }
+
+  /* Efecto al pasar el mouse sobre el botón */
+  .custom-button:hover {
+    background: linear-gradient(90deg, #0056b3, #004085); /* Gradiente azul más oscuro */
+    transform: scale(1.05); /* Ligero aumento de tamaño */
+  }
+
+  .blockquote {
+    border: 2px solid #007bff; /* Contorno azul */
+    padding: 20px; /* Espaciado interno para que el contenido no esté pegado al borde */
+    border-radius: 15px; /* Esquinas redondeadas */
+    margin: 20px; /* Espaciado externo */
+  }
+  .blockquote-footer {
+    color: #007bff; /* Cambia el color al que prefieras, este es un azul */
+    font-weight: bold; /* Opcional: darle un peso de fuente más fuerte */
+  }
+
+  /* Estilo para el nuevo footer */
+  .custom-footer {
+    background-color: #1a1a1a; /* Fondo oscuro para apariencia institucional */
+    color: #f8f9fa; /* Texto claro para resaltar en fondo oscuro */
+    width: 100%;
+    padding: 20px 0; /* Espaciado arriba y abajo */
+    margin: 0; /* Sin margen para evitar flotación */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.3); /* Sombra superior para un diseño innovador */
+    position: relative; /* Asegura que el footer se comporte correctamente */
+    bottom: 0; /* Asegura que el footer esté al final de la página */
+  }
+
+  /* Estilo para el contenido dentro del footer */
+  .footer-content {
+    max-width: 1200px; /* Limitar el ancho del contenido */
+    margin: 0 auto; /* Centrar el contenido */
+    text-align: center; /* Centrar texto */
+    padding: 0 15px; /* Espaciado horizontal para dispositivos pequeños */
+  }
+
+  /* Estilo para el link de correo electrónico */
+  .footer-link {
+    color: #007bff; /* Azul corporativo */
+    text-decoration: none; /* Sin subrayado */
+    font-weight: bold; /* Texto en negrita */
+    transition: color 0.3s ease-in-out;
+  }
+
+  .footer-link:hover {
+    color: #66b2ff; /* Color más claro al pasar el mouse */
+  }
+
+  /* Efecto de hover sobre el footer */
+  .custom-footer:hover {
+    background-color: #292929; /* Fondo ligeramente más claro al pasar el mouse */
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  /* Adaptación para pantallas pequeñas */
+  @media (max-width: 768px) {
+    .custom-footer {
+      padding: 15px 0; /* Reducir el espaciado en dispositivos pequeños */
+    }
+  }
+
+  nav {
+    position: relative; /* Ya no es fijo */
+    width: 100%;
+    z-index: 1000; /* Puedes mantener el índice z si es necesario */
+  }

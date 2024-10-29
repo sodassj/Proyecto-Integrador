@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - MotorMarket</title>
+    {% load static %}
+    <link href="{% static 'gestion_vehiculos/css/login.css' %}" rel="stylesheet">
+</head>
+<body>
+    <section>
+        <h1>Registro</h1>
+
+        {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="inputbox">
+                <ion-icon name="person"></ion-icon>
+                <input type="text" name="username" required placeholder="Ingresa tu usuario">
+                <label for="username">Nombre de Usuario:</label>
+            </div>
+            <div class="inputbox">
+                <ion-icon name="person"></ion-icon>
+                <input type="text" name="first_name" required placeholder="Ingresa tu nombre">
+                <label for="first_name">Nombre:</label>
+            </div>
+            <div class="inputbox">
+                <ion-icon name="person"></ion-icon>
+                <input type="text" name="last_name" required placeholder="Ingresa tu apellido">
+                <label for="last_name">Apellido:</label>
+            </div>
+            <div class="inputbox">
+                <ion-icon name="mail"></ion-icon>
+                <input type="email" name="email" required placeholder="Ingresa tu correo">
+                <label for="email">Correo Electrónico:</label>
+            </div>
+            
+            <div class="inputbox">
+                <ion-icon name="lock-closed"></ion-icon>
+                <input type="password" name="password" required placeholder="Ingresa tu contraseña">
+                <label for="password">Contraseña:</label>
+            </div>
+            <div class="inputbox">
+                <ion-icon name="lock-closed"></ion-icon>
+                <input type="password" name="password_confirm" required placeholder="Confirma tu contraseña">
+                <label for="password_confirm">Confirmar Contraseña:</label>
+            </div>
+            <button type="submit" class="btn">Registrar</button>
+        </form>
+
+        <div class="register">
+            <p>¿Ya tienes una cuenta? <a href="{% url 'login' %}">Iniciar sesión</a></p>
+        </div>
+    </section>
+</body>
+</html>
